@@ -41,9 +41,9 @@ for ((i=1; i<= $No_of_namespaces ;i++ ))
 		then
         		if [ `expr $i % 2` == 0 ]
 		        then
-                		ip netns exec ${list_of_ns[$i]}  ping ${list_of_network[$j]}10
+                		echo "ip netns exec ${list_of_ns[$i]}  ping -c 5  ${list_of_network[$j]}10"
         		else
-                		ip netns exec ${list_of_ns[$i]}  ping ${list_of_network[$j]}20
+                		echo "ip netns exec ${list_of_ns[$i]}  ping -c 5 ${list_of_network[$j]}20"
         		fi
 		else
         		break
