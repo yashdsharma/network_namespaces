@@ -49,6 +49,23 @@ for ((i=1; i<= $No_of_namespaces ;i++ ))
         		break
 		fi
 
+	echo -e " Do you want to Test iperf Traffic?
+          Enter 'y' for yes and 'n' for no"
+
+        read iperf
+                if [ $iperf == 'y' ]
+                then
+                        if [ `expr $i % 2` == 0 ]
+                        then
+                                echo "ip netns exec ${list_of_ns[$i]}  iperf -c  ${list_of_network[$j]}10 -i 2 -T 100"
+                        else
+                                echo "ip netns exec ${list_of_ns[$i]}  iperf -c  ${list_of_network[$j]}20 -i 2 -T 100"
+                        fi
+                else
+                        break
+                fi
+
+
    else
 	ip netns exec ${list_of_ns[$i]}  ifconfig $interface ${list_of_network[$j]}10/24 up
    
